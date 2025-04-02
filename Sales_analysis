@@ -1,0 +1,45 @@
+SELECT *
+FROM sales;
+
+SELECT *
+FROM people;
+
+SELECT *
+FROM products;
+
+SELECT *
+FROM geo;
+
+
+
+SELECT Salesperson, SUM(amount) AS TotalSales
+FROM people
+JOIN sales ON 
+sales.SPID = people.SPID
+GROUP BY Salesperson;
+
+SELECT product, SUM(amount) AS TotalSales
+FROM products
+JOIN sales ON 
+sales.PID = products.PID
+GROUP BY product
+ORDER BY TotalSales;
+
+SELECT product, SUM(amount) AS TotalSales, Geo
+	FROM products
+	JOIN sales ON 
+	sales.PID = products.PID
+	JOIN geo ON
+	geo.GeoID = Sales.GeoID
+	GROUP BY product, Geo
+	ORDER BY TotalSales;
+    
+    SELECT product, SUM(Amount) AS 'TotalAmount' 
+    FROM sales
+    JOIN products ON 
+    sales.PID = products.PID
+    GROUP BY product
+    ORDER BY 'TotalAmount' DESC
+    LIMIT 5;
+    
+    
